@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tzolkinthemayancalendar.com/sitemap.xml
