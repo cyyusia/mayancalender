@@ -9,7 +9,8 @@ git diff --quiet && git diff --cached --quiet || {
 
 git push origin main
 
-GIT_INDEX_FILE=$(mktemp); export GIT_INDEX_FILE
+GIT_INDEX_FILE=$(mktemp -u)  # 파일이 아닌 경로만 (빈 파일은 git이 거부)
+export GIT_INDEX_FILE
 trap 'rm -f "$GIT_INDEX_FILE"' EXIT
 
 git read-tree --prefix= main:docs
