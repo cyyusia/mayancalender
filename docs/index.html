@@ -241,6 +241,14 @@
     .tcell .sg { font-size: 13px; }
     .tcell { padding: 10px 4px; }
   }
+
+  /* 하단 푸터 */
+  .site-footer {
+    padding: 28px 20px 40px; text-align: center;
+    font-size: 13px; color: var(--sub); line-height: 1.7;
+  }
+  .site-footer a { color: var(--sub); }
+  .site-footer a:hover { color: var(--ink); }
 </style>
 
 <script type="application/ld+json">
@@ -330,6 +338,10 @@
     <div id="reading"></div>
     <button class="restart" id="againBtn">다른 날짜로 다시 보기</button>
   </div>
+
+  <footer class="site-footer">
+    <a href="/privacy.html">개인정보처리방침</a>
+  </footer>
 </div>
 
 <script>
@@ -2184,6 +2196,25 @@
   }
   function sync() { btn.disabled = !ready(); }
 
+  // --- 분석 (Google Analytics 4) ---------------------------------------
+  // 이름/생년월일 등 입력값은 절대 전송하지 않습니다. 보내는 값은 화면 이름과
+  // 항목 코드(overall/love/career/health/compat)뿐입니다.
+  function track(name, params) {
+    if (typeof window.gtag !== "function") return;
+    try { window.gtag("event", name, params || {}); } catch (e) {}
+  }
+  // 이 사이트는 URL이 하나뿐이라, 화면 전환을 가상 페이지뷰로 기록합니다.
+  function trackScreen(path, title) {
+    if (typeof window.gtag !== "function") return;
+    try {
+      window.gtag("event", "page_view", {
+        page_title: title,
+        page_location: location.origin + path,
+        page_path: path
+      });
+    } catch (e) {}
+  }
+
   seg.addEventListener("click", function (e) {
     var b = e.target.closest("button[data-cat]");
     if (!b) return;
@@ -2197,6 +2228,7 @@
     bdayLabel.textContent = isC ? "내 생년월일" : "생년월일";
     btn.textContent = isC ? "궁합 보러가기" : "촐킨 보러가기";
     sync();
+    track("select_category", { category: cat });
   });
 
   i1.addEventListener("input", sync);
@@ -2212,6 +2244,7 @@
     tbTitle.textContent = "촐킨 오라클";
     screenName = "intro";
     window.scrollTo({ top: 0, behavior: "auto" });
+    trackScreen("/", "촐킨 오라클 - 시작");
   }
 
   function showResult() {
@@ -2229,6 +2262,8 @@
     tbTitle.textContent = CATLABEL[cat].title;
     screenName = "result";
     window.scrollTo({ top: 0, behavior: "auto" });
+    trackScreen("/result/" + cat, "촐킨 오라클 - " + CATLABEL[cat].title);
+    track("view_reading", { category: cat, category_label: CATLABEL[cat].title });
   }
   function showForm() {
     introScreen.hidden = true;
@@ -2238,14 +2273,15 @@
     tbTitle.textContent = "촐킨 보기";
     screenName = "form";
     window.scrollTo({ top: 0, behavior: "auto" });
+    trackScreen("/form", "촐킨 오라클 - 입력");
   }
 
   btn.addEventListener("click", showResult);
-  startBtn.addEventListener("click", showForm);
+  startBtn.addEventListener("click", function () { track("start_reading"); showForm(); });
   backBtn.addEventListener("click", function () {
     if (screenName === "result") showForm(); else showIntro();
   });
-  againBtn.addEventListener("click", showForm);
+  againBtn.addEventListener("click", function () { track("read_again"); showForm(); });
   menuBtn.addEventListener("click", function () {
     if (screenName === "form") {
       sheet.hidden = !sheet.hidden;
