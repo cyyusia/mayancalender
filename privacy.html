@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="촐킨 오라클의 개인정보처리방침입니다. 입력한 이름과 생년월일은 브라우저 안에서만 계산되며 서버로 전송되거나 저장되지 않습니다.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://tzolkinthemayancalendar.com/privacy.html">
+<title>개인정보처리방침 - 촐킨 오라클</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+  :root {
+    --bg: #ffffff;
+    --ink: #111111;
+    --sub: #8a8a8a;
+    --line: #e6e6e6;
+    --line-strong: #111111;
+    --fill: #f4f4f4;
+    --fill-2: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { background: #ffffff; }
+
+  body {
+    margin: 0;
+    color: var(--ink);
+    font-family: Pretendard, "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+      system-ui, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: -0.01em;
+    word-break: keep-all;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+  ::selection { background: #111; color: #fff; }
+
+  .app { max-width: 560px; margin: 0 auto; min-height: 100vh; background: var(--bg); }
+
+  /* 상단 바 */
+  .topbar {
+    position: sticky; top: 0; z-index: 10; background: var(--bg);
+    height: 56px;
+  }
+  .topbar .tb-title {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    margin: 0; padding: 0; text-indent: 0; white-space: nowrap;
+    font-weight: 700; font-size: 16px;
+  }
+  .icon-btn {
+    position: absolute; top: 6px;
+    width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+    background: none; border: none; cursor: pointer; color: var(--ink); padding: 0;
+  }
+  .icon-btn.left { left: 4px; }
+  .icon-btn.right { right: 4px; }
+  .icon-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: -6px; border-radius: 8px; }
+  .icon-btn[hidden] { visibility: hidden; display: flex; }
+
+  .text-field {
+    width: 100%; height: 56px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg); color: var(--ink); padding: 0 18px;
+    font: 500 16px inherit; font-family: inherit;
+  }
+  .text-field::placeholder { color: #c4c4c4; font-weight: 400; }
+  .text-field:focus-visible { outline: none; border-color: var(--ink); }
+
+  .screen { padding: 8px 20px 56px; }
+
+  /* 시작 화면 */
+  .intro-ring { margin-top: 10px; }
+  .intro-today { text-align: center; font-size: 13px; color: var(--sub); margin: 14px 0 0; line-height: 1.6; }
+  .intro h1 {
+    font-size: 29px; font-weight: 700; line-height: 1.35; letter-spacing: -0.025em;
+    margin: 30px 0 0;
+  }
+  .about { margin-top: 22px; }
+  .about p { margin: 0; font-size: 16px; line-height: 1.75; }
+  .about p + p { margin-top: 14px; }
+  .screen[hidden] { display: none; }
+
+  /* 폼: 라벨과 입력란이 하나의 필드 단위이고, 필드 사이 간격은 항상 동일합니다 */
+  .form-fields { display: flex; flex-direction: column; gap: 26px; padding-top: 6px; }
+  .field { display: flex; flex-direction: column; gap: 10px; }
+  .partner { display: contents; }
+  .partner[hidden] { display: none; }
+  .flabel { font-weight: 700; font-size: 15px; margin: 0; line-height: 1.4; }
+
+  .seg { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .seg button {
+    grid-column: span 2;
+    height: 52px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--line); background: var(--bg); color: var(--sub);
+    font: 500 15px inherit; font-family: inherit;
+    transition: border-color .12s, color .12s, font-weight .12s;
+  }
+  .seg button:nth-child(4), .seg button:nth-child(5) { grid-column: span 3; }
+  .seg button.on { border: 2px solid var(--ink); color: var(--ink); font-weight: 700; }
+  .seg button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .date-field {
+    width: 100%; height: 56px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg); color: var(--ink); padding: 0 18px;
+    font: 500 16px inherit; font-family: inherit; font-variant-numeric: tabular-nums;
+  }
+  .date-field:focus-visible { outline: none; border-color: var(--ink); }
+
+  .cta {
+    width: 100%; height: 58px; margin-top: 40px; border: none; border-radius: 999px;
+    background: var(--ink); color: #fff; font: 700 16px inherit; font-family: inherit;
+    cursor: pointer;
+  }
+  .cta:disabled { background: var(--fill); color: #c0c0c0; cursor: default; }
+  .cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  .form-note { margin: 20px 2px 0; font-size: 13px; color: var(--sub); line-height: 1.7; letter-spacing: 0; }
+
+  /* 안내 시트 */
+  .sheet { border-top: 1px solid var(--line); margin-top: 28px; padding-top: 18px; font-size: 13px; color: var(--sub); }
+  .sheet[hidden] { display: none; }
+  .sheet p { margin: 0 0 10px; line-height: 1.7; }
+  .sheet a { color: var(--sub); }
+
+  /* 결과 */
+  .hero { text-align: center; padding: 4px 0 4px; }
+  .ring { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+  .hero .cat { font-size: 13px; color: var(--sub); margin-top: 18px; }
+  .hero h2 { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; margin: 6px 0 0; }
+  .hero .ko { font-size: 15px; color: var(--sub); margin-top: 4px; }
+  .hero .num-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 16px; }
+  .hero .num-row span { font-size: 14px; color: var(--sub); }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; margin-top: 16px; }
+  .chips span { font-size: 12.5px; color: var(--ink); background: var(--fill); border-radius: 8px; padding: 5px 11px; }
+  .lede {
+    margin: 24px 0 0; font-size: 17px; font-weight: 500; line-height: 1.65;
+    padding-top: 22px; border-top: 1px solid var(--line); text-align: left;
+  }
+  .hero h2 { line-height: 1.25; }
+
+  /* 결과 본문의 수직 리듬.
+     섹션 사이 44, 섹션 안의 서로 다른 블록 사이 16, 이어지는 문단 사이 12 로 통일합니다 */
+  section.rs { margin-top: 44px; }
+  section.rs .lbl {
+    font-size: 12.5px; color: var(--sub); font-weight: 500;
+    line-height: 1.5; letter-spacing: 0; margin: 0;
+  }
+  section.rs h3 {
+    font-size: 20px; font-weight: 700; margin: 4px 0 0;
+    line-height: 1.4; letter-spacing: -0.02em;
+  }
+  section.rs > p { margin: 0; font-size: 16px; line-height: 1.7; }
+  section.rs > * + * { margin-top: 16px; }
+  section.rs > * + p { margin-top: 16px; }
+  section.rs > .note { margin-top: 14px; }
+  section.rs > p + p { margin-top: 12px; }
+  section.rs > p + p.note { margin-top: 14px; }
+
+  .box { border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; }
+  .box h4 { font-size: 13px; font-weight: 700; margin: 0; line-height: 1.5; letter-spacing: 0; }
+  .box > * + * { margin-top: 10px; }
+  .box ul { margin: 0; padding-left: 18px; }
+  .box li { font-size: 15px; line-height: 1.65; margin: 0; }
+  .box li + li { margin-top: 6px; }
+  .box p { font-size: 15px; line-height: 1.65; margin: 0; }
+  .box p + p { margin-top: 10px; }
+
+  .deflist { display: grid; gap: 10px; }
+  .defrow { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .defrow .dt { font-size: 12.5px; color: var(--sub); font-weight: 500; line-height: 1.5; letter-spacing: 0; }
+  .defrow .dd { font-size: 15.5px; line-height: 1.65; margin-top: 6px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags span { font-size: 14px; line-height: 1.5; background: var(--fill); border-radius: 8px; padding: 5px 11px; }
+
+  ol.advice { margin: 0; padding-left: 20px; }
+  ol.advice li { font-size: 16px; line-height: 1.7; margin: 0; }
+  ol.advice li + li { margin-top: 12px; }
+  section.rs > ol.advice { margin-top: 16px; }
+
+  .names { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .names span { font-size: 14px; font-weight: 700; line-height: 1.5; background: var(--fill); border-radius: 8px; padding: 5px 11px; }
+
+  /* 생명의 나무 */
+  .tree { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .tcell { border: 1px solid var(--line); border-radius: 12px; padding: 14px 8px; text-align: center; }
+  .tcell.center { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .tcell .pos { font-size: 11px; color: var(--sub); line-height: 1.45; letter-spacing: 0; }
+  .tcell.center .pos { color: #d0d0d0; }
+  .tcell .sg { font-size: 15px; font-weight: 700; margin-top: 6px; }
+  .tcell .tn { font-size: 12px; color: var(--sub); }
+  .tcell.center .tn { color: #d0d0d0; }
+
+  .coord { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .coord .c { background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .coord .k { font-size: 12px; color: var(--sub); }
+  .coord .v { font-size: 16px; font-weight: 700; margin-top: 3px; font-variant-numeric: tabular-nums; }
+
+  .today { border: 1px solid var(--ink); border-radius: 12px; padding: 18px 20px; }
+  .today .tt { font-size: 18px; font-weight: 700; }
+  .today p { margin: 8px 0 0; font-size: 15.5px; line-height: 1.7; }
+
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .pcard { border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+  .pcard .who { font-size: 12px; color: var(--sub); }
+  .pcard .pn { font-size: 20px; font-weight: 700; margin-top: 4px; }
+  .pcard .pk { font-size: 13px; color: var(--sub); }
+  .pcard .pt { font-size: 13px; color: var(--sub); margin-top: 8px; }
+
+  .note { font-size: 13px; color: var(--sub); margin-top: 12px; line-height: 1.7; letter-spacing: 0; }
+
+  .restart {
+    width: 100%; height: 54px; margin-top: 44px; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+    font: 700 15px inherit; font-family: inherit; cursor: pointer;
+  }
+  .restart:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  @media (max-width: 380px) {
+    .screen { padding: 8px 16px 48px; }
+    .hero h2 { font-size: 28px; }
+    .tcell .sg { font-size: 13px; }
+    .tcell { padding: 10px 4px; }
+  }
+
+  /* 하단 푸터 */
+  .site-footer {
+    padding: 28px 20px 40px; text-align: center;
+    font-size: 13px; color: var(--sub); line-height: 1.7;
+  }
+  .site-footer a { color: var(--sub); }
+  .site-footer a:hover { color: var(--ink); }
+</style>
+<style>
+  .doc { padding: 8px 20px 56px; }
+  .doc h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.025em; margin: 24px 0 6px; }
+  .doc .eff { font-size: 13px; color: var(--sub); margin: 0 0 28px; }
+  .doc h2 { font-size: 17px; font-weight: 700; margin: 32px 0 10px; letter-spacing: -0.02em; }
+  .doc p { margin: 0 0 12px; font-size: 15px; line-height: 1.75; }
+  .doc ul { margin: 0 0 12px; padding-left: 20px; font-size: 15px; line-height: 1.75; }
+  .doc li { margin-bottom: 6px; }
+  .doc table { width: 100%; border-collapse: collapse; margin: 0 0 12px; font-size: 14px; }
+  .doc th, .doc td { border: 1px solid var(--line); padding: 9px 10px; text-align: left; vertical-align: top; }
+  .doc th { background: var(--fill); font-weight: 700; white-space: nowrap; }
+  .doc .callout {
+    border: 1px solid var(--line-strong); border-radius: 10px;
+    padding: 16px 18px; margin: 0 0 20px;
+  }
+  .doc .callout p:last-child { margin-bottom: 0; }
+  .doc .back { display: inline-block; margin-top: 36px; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="tb-title">개인정보처리방침</div>
+  </div>
+
+  <div class="doc">
+    <h1>개인정보처리방침</h1>
+    <p class="eff">시행일자: 2026년 9월 3일</p>
+
+    <div class="callout">
+      <p><strong>입력하신 이름과 생년월일은 수집하지 않습니다.</strong> 촐킨 계산은 전부 이용자의 브라우저 안에서 이루어지며, 입력값이 서버로 전송되거나 어딘가에 저장되는 일은 없습니다. 브라우저를 닫으면 그대로 사라집니다.</p>
+    </div>
+
+    <h2>1. 수집하지 않는 정보</h2>
+    <p>촐킨 오라클은 회원가입이 없으며, 이용자가 화면에 입력하는 다음 정보를 <strong>수집·전송·저장하지 않습니다.</strong></p>
+    <ul>
+      <li>이름 (궁합의 경우 상대방 이름 포함)</li>
+      <li>생년월일 (궁합의 경우 상대방 생년월일 포함)</li>
+    </ul>
+    <p>이 값들은 브라우저 내 자바스크립트 계산에만 쓰이고 화면 표시 후 폐기됩니다.</p>
+
+    <h2>2. 자동으로 수집되는 정보</h2>
+    <p>서비스 이용 현황 파악을 위해 Google Analytics 4를 사용합니다. 이 과정에서 다음 정보가 쿠키를 통해 자동으로 수집됩니다.</p>
+    <table>
+      <tr><th>항목</th><td>접속 IP 주소, 브라우저 및 기기 정보, 운영체제, 화면 크기, 언어 설정, 방문 일시, 조회한 화면, 유입 경로(리퍼러)</td></tr>
+      <tr><th>수집 방법</th><td>이용자가 사이트에 접속할 때 쿠키(<code>_ga</code>, <code>_ga_*</code>)를 통해 자동 생성·수집</td></tr>
+      <tr><th>이용 목적</th><td>방문자 수와 이용 화면 등 통계 분석, 서비스 개선</td></tr>
+      <tr><th>보유 기간</th><td>Google Analytics에 설정된 데이터 보관 기간에 따르며, 기본값은 이벤트 데이터 2개월입니다</td></tr>
+    </table>
+    <p>이용 항목 선택(종합·연애·취업·건강·궁합)과 화면 전환 여부도 통계로 기록되지만, <strong>입력하신 이름과 생년월일은 이 통계에 포함되지 않습니다.</strong></p>
+
+    <h2>3. 개인정보의 국외 이전</h2>
+    <p>위 통계 정보는 Google Analytics 서비스 이용에 따라 국외로 이전되어 처리됩니다.</p>
+    <table>
+      <tr><th>이전받는 자</th><td>Google LLC</td></tr>
+      <tr><th>이전 국가</th><td>미국 등 Google이 서버를 운영하는 국가</td></tr>
+      <tr><th>이전 항목</th><td>제2항의 자동 수집 정보</td></tr>
+      <tr><th>이전 목적</th><td>웹사이트 이용 통계 분석</td></tr>
+      <tr><th>보유 기간</th><td>Google Analytics 데이터 보관 정책에 따름</td></tr>
+    </table>
+    <p>Google의 데이터 처리 방식은 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google 개인정보처리방침</a>에서 확인하실 수 있습니다.</p>
+
+    <h2>4. 쿠키 거부 방법</h2>
+    <p>이용자는 쿠키 저장을 거부할 수 있습니다.</p>
+    <ul>
+      <li>브라우저 설정에서 쿠키 저장을 차단하거나 삭제할 수 있습니다. (예: Chrome → 설정 → 개인정보 보호 및 보안 → 서드파티 쿠키)</li>
+      <li>Google이 제공하는 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics 차단 브라우저 부가기능</a>을 설치하면 통계 수집을 거부할 수 있습니다.</li>
+    </ul>
+    <p>쿠키를 거부해도 촐킨 계산 기능은 정상적으로 이용하실 수 있습니다.</p>
+
+    <h2>5. 외부 서비스 연결</h2>
+    <p>이 사이트는 글꼴 표시를 위해 Google Fonts를 불러옵니다. 이 과정에서 접속 IP가 Google 서버에 전달될 수 있습니다.</p>
+    <p>안내 화면에는 외부 사이트로 연결되는 링크가 포함되어 있으며, 해당 사이트의 개인정보 처리에 대해서는 각 사이트의 방침이 적용됩니다.</p>
+
+    <h2>6. 이용자의 권리</h2>
+    <p>이용자는 자신의 개인정보에 대해 열람, 정정, 삭제, 처리정지를 요구할 수 있습니다. 다만 이 서비스는 이용자를 식별할 수 있는 정보를 저장하지 않으므로, 개별 이용자를 특정한 열람·삭제 요청에는 응할 수 없습니다. 쿠키를 통해 수집된 통계 정보는 위 제4항의 방법으로 직접 거부·삭제하실 수 있습니다.</p>
+
+    <h2>7. 만 14세 미만 아동</h2>
+    <p>이 서비스는 만 14세 미만 아동을 대상으로 하지 않으며, 아동의 개인정보를 알면서 수집하지 않습니다.</p>
+
+    <h2>8. 개인정보 보호책임자</h2>
+    <table>
+      <tr><th>이름</th><td>유채연</td></tr>
+      <tr><th>이메일</th><td>cyyu.sia@gmail.com</td></tr>
+    </table>
+    <p>개인정보 관련 문의는 위 이메일로 연락해 주시기 바랍니다.</p>
+
+    <h2>9. 방침의 변경</h2>
+    <p>이 방침의 내용이 추가·삭제·수정될 경우 변경사항의 시행 7일 전부터 이 페이지를 통해 공지합니다.</p>
+
+    <h2>10. 면책</h2>
+    <p>촐킨 오라클이 제공하는 풀이는 마야 촐킨 역법의 전통적 상징을 바탕으로 작성된 문화·오락 목적의 콘텐츠이며, 의학적·법률적·재정적 조언이 아닙니다.</p>
+
+    <a class="back" href="/">← 촐킨 오라클로 돌아가기</a>
+  </div>
+</div>
+</body>
+</html>
